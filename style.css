@@ -1,0 +1,190 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header  */
+.header {
+    display: flex;
+    flex-direction: row;
+    height: 150px;
+    
+}
+
+
+.header .left{
+    display: flex;
+    flex-direction: row;    
+    width: 33.3%;
+    flex-basis: auto;
+}
+.header .left img{
+    
+    border: 1px solid black;
+    margin-left:20px;
+    align-self: center;
+    width: 60%;
+    height:60%;
+}
+
+.header .center{    
+    width: 33.3%;    
+    flex-basis: auto;
+    text-align: center;    
+}
+.header .center h1, .header .center h2{
+    
+    align-self: center;
+}
+
+.header .right{  
+    display: flex;
+    flex-basis: auto;
+    width: 33.3%;        
+    justify-content: center;
+}
+.header .right .login{
+    display: flex;
+    flex-basis: auto;
+    background-color: blue;
+    color: white;
+    width: 200px;
+    align-self: center;
+    text-align: center;
+    height: 50px;
+    border: 1px solid black;
+}
+.header .right .login a{
+    color:white;
+    align-self: center;
+    text-align: center;
+    width:50%;
+    height:100%;
+    line-height: 45px;
+}
+.header .right .login a:hover{
+    background-color:white;
+    color:black;
+}
+.header .right .dash{
+    color:white;
+    align-self: center;
+    text-align: center;    
+}
+/* Main */
+.main {
+    display: flex;
+    flex-direction: row;
+    flex: auto;
+    background-color: #ffff;
+}
+.main .left{
+    background-color: lightgray;
+    width: 20%;    
+}
+
+.main .left .menu{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    align-self: center;
+    width: 100%;
+    padding: 0px;      
+}
+
+.main .left .menu li{    
+    height:50px;
+    text-align: center;    
+    line-height: 45px;  
+    border-bottom: 1px solid black;        
+}
+
+.main .right{    
+    width: 80%;
+    margin-left: 50px;
+
+}
+
+.main .right .box{
+    display: flex;
+    flex-direction: row;
+    flex-basis: auto;
+    
+}
+.main .right .box .box-l{        
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 50%;
+    justify-content: center;
+    list-style: none;
+    padding-bottom: 20px;
+}
+
+
+.main .right .box .box-r{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 50%;
+    justify-content: center;
+    list-style: none;
+    padding-bottom: 20px;
+}
+
+.mapouter{
+    align-self: center;    
+}
+
+
+/* Footer */
+.footer {
+    height: 25px;
+    background-color: lightgray;    
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+    justify-content: center;
+}
+
+.footer .dash{    
+    width:40px;
+    text-align: center;
+    
+}
+
+
+.active{
+    background-color: #3366cc;
+}
+
+
+
+
+
+/* ergalia */
+.border-full{
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+}
+.border-top{    
+    border-top: 1px solid black;    
+}
+.border-bottom{    
+    border-bottom: 1px solid black;    
+}
+.border-right{    
+    border-right: 1px solid black;    
+}
+.border-left{    
+    border-left: 1px solid black;    
+}
