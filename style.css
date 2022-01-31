@@ -115,17 +115,18 @@ body {
 .main .right .box{
     display: flex;
     flex-direction: row;
-    flex-basis: auto;
+    flex-basis: auto;    
     
 }
 .main .right .box .box-l{        
     display: flex;
     flex-direction: column;
-    align-self: center;
+    /* align-self: center; */
     width: 50%;
-    justify-content: center;
+    
     list-style: none;
     padding-bottom: 20px;
+    align-items: stretch;
 }
 
 
@@ -136,7 +137,7 @@ body {
     width: 50%;
     justify-content: center;
     list-style: none;
-    padding-bottom: 20px;
+    padding-bottom: 20px;    
 }
 
 .mapouter{
@@ -166,17 +167,19 @@ body {
 }
 
 
-.odigies{
-
+.odigies, .login{
+    align-items: stretch;
 }
 
-.odigies >ul li{
+.login  >ul li, .odigies >ul li{
     padding: 10px;
 }
-.odigies >ul li >label{
+.login  >ul li >label, .odigies >ul li >label{
     display:inline-block;
     width:200px;
 }
+
+
 
 .anakoinoseis{
     display: flex;
@@ -210,6 +213,12 @@ body {
 .button{
     background-color: #3366CC;
     border: 1px solid black;
-    width:120px;    
+    color:white;
+    width:130px;    
     height:40px;
+    cursor:pointer;
+}
+.button:hover{
+    background-color: #ffff;
+    color:black;
 }
