@@ -30,7 +30,7 @@ body {
     border: 1px solid black;
     margin-left:20px;
     align-self: center;
-    width: 60%;
+    /* width: 60%; */
     height:60%;
 }
 
