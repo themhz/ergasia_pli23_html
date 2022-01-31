@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Πλατφόρμα εμβολιασμού</title>
+</head>
+
+<body>
+    <div class="header">
+        <div class="left">
+            <img src="https://via.placeholder.com/400x200">
+        </div>
+        <div class="center">
+            <h1>Πλατφόρμα εμβολιασμού</h1>
+            <h2>Υπουργείο Υγείας</h2>
+        </div>
+        <div class="right">
+            <div class="login">
+                <a href="#">Login</a>
+                <div class="dash">/</div><a href="#">Logout</a>
+            </div>
+        </div>
+    </div>
+    <div class="main border-full">
+        <div class="left border-right">
+            <ul class="menu">
+                <li><a href="index.html">Αρχική σελίδα</a></li>
+                <li><a href="emboliastika_kentra.html">Εμβολιαστικά Κέντρα</a></li>
+                <li><a href="odigies_mvoliasmou.html">Οδηγίες εμβολιασμού</a></li>
+                <li class="active"><a href="odigies_egrafis_isodou.html">Οδηγίες εγγραφής/εισόδου</a></li>
+                <li>Ανακοινώσεις</li>
+            </ul>
+        </div>
+        <div class="right">`
+            <form>
+                <div class="odigies">
+
+                    <h1>Οδηγίεςε εγγραφής στην πλατφόρμα</h1>
+                    <p>
+                        Για να εγγραφείτε στην πλατφόρμα θα πρέπει να συμπληρώσετε την παρακάτω φόρμα. Μετά την αποστολή των στοιχείων σας, θα σας σταλεί ένα επιβεβαιωτικό μήνυμα στο e-mail σας το οποίο θα πρέπει να διαβάσετε και να κάνετε κλικ στον σύνδεσμο της επιβεβαίωσης.
+                        Τέλος θα έρθετε πάλι στην σελίδα μας και θα κάνετε σύνδεση με τα στοιχεία σας.
+                    </p>
+                    <ul>
+                        <li><label for="name">Όνομα</label><input type="text" class="form-control" id="name" name="name"
+                                required></li>
+                        <li><label for="lastname">Επίθετο</label><input type="text" class="form-control" id="lastname"
+                                name="lastname" required></li>
+                        <li><label for="amka">Α.Μ.Κ.Α</label><input type="text" class="form-control" id="amka"
+                                name="amka" required></li>
+                        <li><label for="afm">Α.Φ.Μ</label><input type="text" class="form-control" id="afm" name="afm"
+                                required></li>
+                        <li><label for="taftotita">Αρ.Ταυτότητας</label><input type="text" class="form-control"
+                                id="taftotita" name="taftotita" required></li>
+                        <li><label for="age">Ηλικία</label><input type="text" class="form-control" id="age" name="age"
+                                required></li>
+                        <li><label for="age">Φύλο</label><input type="text" class="form-control" id="sex" name="sex">
+                        </li>
+                        <li><label for="email">e-mail</label><input type="text" class="form-control" id="email"
+                                name="email"></li>
+                        <li><label for="mobile">Κινητό τηλέφωνο</label><input type="text" class="form-control"
+                                id="mobile" name="mobile" required></li>
+                    </ul>
+                    <input type="submit" value="Εϊσοδος/Εγγραφή" class="button">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+
+        <a href="#">Όροι χρήσης</a>
+        <div class="dash">|</div><a href="#">Πολιτική απορρήτου</a>
+
+    </div>
+</body>
+
+</html>
