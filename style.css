@@ -178,8 +178,14 @@ body {
     width:200px;
 }
 
+.anakoinoseis{
+    display: flex;
+    flex-direction: column;
+}
 
-
+.anakoinosh{
+    border-top: 1px solid #3366CC;
+}
 
 /* ergalia */
 .border-full{
