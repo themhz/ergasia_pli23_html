@@ -161,20 +161,37 @@ body {
     
 }
 
-
 .active{
     background-color: #3366cc;
 }
 
 
-.odigies, .login{
+.odigies, .login, .register{
     align-items: stretch;
 }
 
-.login  >ul li, .odigies >ul li{
+.odigies >ul li{
     padding: 10px;
 }
-.login  >ul li >label, .odigies >ul li >label{
+.login  >ul li >label, .register >ul li >label{
+    border-right:1px solid black;
+    padding:10px;
+}
+.login  >ul li >input, .register >ul li >input{
+    width: 50%;
+    padding:10px;
+    border: none;
+}
+.login  >ul li,.register >ul li{
+    list-style:none;
+    border:1px solid black;
+    width:80%;
+}
+.login  >ul li>label,.register >ul li>label{
+    border-right: 1px solid black;    
+}
+
+.login  >ul li >label, .odigies >ul li >label, .register >ul li>label{
     display:inline-block;
     width:200px;
 }
