@@ -168,6 +168,7 @@ body {
 
 .odigies, .login, .register{
     align-items: stretch;
+    padding:20px;
 }
 
 .odigies >ul li{
@@ -233,8 +234,18 @@ body {
     color:white;
     width:130px;    
     height:40px;
-    cursor:pointer;
+    cursor:pointer;    
 }
+.abutton{
+    background-color: #3366CC;
+    border: 1px solid black;
+    color:white;
+    width:130px;    
+    height:40px;
+    cursor:pointer;    
+    padding:15px;
+}
+
 .button:hover{
     background-color: #ffff;
     color:black;
