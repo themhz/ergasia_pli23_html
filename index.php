@@ -2,9 +2,9 @@
 
 $tasks = array();
 $tasks[] = "config.php";
-$tasks[] = "classes/database.php";
-$tasks[] = "classes/controller.php";
-$tasks[] = "classes/model.php";
+$tasks[] = "classes/core/database.php";
+$tasks[] = "classes/core/controller.php";
+$tasks[] = "classes/core/model.php";
 $tasks[] = "classes/models/entities/user.php";
 
 
