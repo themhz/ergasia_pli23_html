@@ -330,6 +330,27 @@ class Model
 
     }
 
+
+    public function truncate($debug = false){
+        $db = Database::getInstance();
+        $sql = "truncate $this->__tablename ";
+        
+
+        if($debug == true){
+            echo $sql;
+            //die();
+        }
+        $sth = $db->dbh->prepare($sql);
+        $sth->execute();
+        $count = $sth->rowCount();
+
+        if ($count == '0') {
+            return ['result' => false];
+        } else {
+            return ['result' => true];
+        }
+    }
+
     public function validate() : array{
 
         $errors = [];

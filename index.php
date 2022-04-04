@@ -18,11 +18,9 @@ foreach($tasks as $file){
 
 $user = new User();
 
-//print_r($user->select(['id ='=>$_REQUEST["user_id"]]));
-//print_r($user->select(['name ='=>$_REQUEST["name"], 'id ='=>$_REQUEST["user_id"]]));
 
-$user->id =5;
-$user->name = "despoinaki1";
+$user->id =2;
+$user->name = "despoinaki2";
 $user->lastname = "alexiadou";
 $user->amka = "066452627";
 $user->afm = "066452627";
@@ -33,4 +31,10 @@ $user->email = "themhz@gmail.com";
 $user->mobilephone = "6987556486";
 $user->role = 0;
 
-$user->delete(['id ='=>$_REQUEST["user_id"]], true);
+print_r($user->select());
+//print_r($user->select(['id ='=>$_REQUEST["user_id"]]));
+//print_r($user->select(['name ='=>$_REQUEST["name"], 'id ='=>$_REQUEST["user_id"]]));
+//$user->update();
+//$user->insert();
+//$user->delete(['id ='=>$_REQUEST["user_id"]], true);
+//$user->truncate();
