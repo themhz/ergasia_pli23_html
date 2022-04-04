@@ -5,6 +5,7 @@ $tasks[] = "config.php";
 $tasks[] = "classes/core/database.php";
 $tasks[] = "classes/core/controller.php";
 $tasks[] = "classes/core/model.php";
+$tasks[] = "classes/core/router.php";
 $tasks[] = "classes/models/entities/user.php";
 
 
@@ -13,8 +14,6 @@ foreach($tasks as $file){
 }
 
 
-// $controler =  new Controller();
-// echo $controler->method;
 
 $user = new User();
 
@@ -31,10 +30,19 @@ $user->email = "themhz@gmail.com";
 $user->mobilephone = "6987556486";
 $user->role = 0;
 
-print_r($user->select());
+//print_r($user->select());
 //print_r($user->select(['id ='=>$_REQUEST["user_id"]]));
 //print_r($user->select(['name ='=>$_REQUEST["name"], 'id ='=>$_REQUEST["user_id"]]));
 //$user->update();
 //$user->insert();
 //$user->delete(['id ='=>$_REQUEST["user_id"]], true);
 //$user->truncate();
+
+
+
+// $controler =  new Controller();
+// echo $controler->method;
+
+$router = new Router();
+$router->loadController();
+$router->executeMethod();
