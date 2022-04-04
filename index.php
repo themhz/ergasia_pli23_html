@@ -5,7 +5,7 @@ $tasks[] = "config.php";
 $tasks[] = "classes/database.php";
 $tasks[] = "classes/controller.php";
 $tasks[] = "classes/model.php";
-$tasks[] = "classes/models/data/user.php";
+$tasks[] = "classes/models/entities/user.php";
 
 
 foreach($tasks as $file){
