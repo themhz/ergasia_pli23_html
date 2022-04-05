@@ -24,7 +24,7 @@
     <!-- Γίνετε επίσης χρήση μια φόρμας στην περίπτωση του Login για να ποστάρονται τα δεδομένα και τέλος κάποιων input δομών για χρήση κουμπιών.  -->
     <div class="header">
         <div class="left">
-            <a href="index.html"><img src="logo.png"></a>
+            <a href="/"><img src="views/template/logo.png"></a>
         </div>
         <div class="center">
             <h1>Πλατφόρμα εμβολιασμού</h1>
@@ -32,21 +32,21 @@
         </div>
         <div class="right">
             <div class="login">
-                <a href="eisodos_eggrafh.html">Login</a><div class="dash">/</div><a href="#">Logout</a>
+                <a href="?page=eisodos_eggrafh&method=eisodos_eggrafh">Login</a><div class="dash">/</div><a href="#">Logout</a>
             </div>
         </div>
     </div>
     <div class="main border-full">
         <div class="left border-right">
             <ul class="menu">
-                <li class="active"><a href="index.html">Αρχική σελίδα</a></li>
-                <li><a href="emboliastika_kentra.html">Εμβολιαστικά Κέντρα</a></li>
-                <li><a href="odigies_mvoliasmou.html">Οδηγίες εμβολιασμού</a></li>
-                <li><a href="odigies_egrafis_isodou.html">Οδηγίες εγγραφής/εισόδου</a></li>
-                <li><a href="anakoinoseis.html">Ανακοινώσεις</a></li>
+                <li class="active"><a href="?page=home&method=home">Αρχική σελίδα</a></li>
+                <li><a href="?page=emboliastika_kentra&method=emboliastika_kentra">Εμβολιαστικά Κέντρα</a></li>
+                <li><a href="?page=odigies_mvoliasmou&method=odigies_mvoliasmou">Οδηγίες εμβολιασμού</a></li>
+                <li><a href="?page=odigies_egrafis_isodou&method=odigies_egrafis_isodou">Οδηγίες εγγραφής/εισόδου</a></li>
+                <li><a href="?page=anakoinoseis&method=anakoinoseis">Ανακοινώσεις</a></li>
             </ul>
         </div>
-        <div class="right"> 
+        <div class="right">
         {{VIEW}}            
         </div>
     </div>

@@ -19,7 +19,7 @@
         </a>                
     </div>
 </div>
-<a class="abutton" href="anakoinoseis.html" >ΔΕΙΤΕ ΟΛΕΣ ΤΙΣ ΑΝΑΚΟΊΝΩΣΗΣ</a>
+<a class="abutton" href="?page=anakoinoseis&method=anakoinoseis" >ΔΕΙΤΕ ΟΛΕΣ ΤΙΣ ΑΝΑΚΟΊΝΩΣΗΣ</a>
 
 <h1>Εκστρατεία Εμβολιασμού</h1>
 <p>

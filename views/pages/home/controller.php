@@ -1,10 +1,10 @@
 <?php
 
-class Welcome{
+class Controller{
 
-    public function test(){
+    public function home(){
         $view = new view();
-        $view->render("welcome");
+        $view->render("home");
     }
 
     public function test2(){
