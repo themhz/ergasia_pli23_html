@@ -4,9 +4,13 @@ class Router
 {
     public $controller;
     public $method;
+    public $viewPath ='views/pages';
+    public $viewPathControllerName ='page';
+    public $viewPathMethodName ='method';
          
     public function loadController(): void{                       
-        $this->controller = 'classes/views/'.$this->getController().'/'.$this->getController().'.php';
+        $this->controller = $this->viewPath.'/'.$this->getController().'/'.$this->getController().'.php';
+       
         if(file_exists($this->controller)){
             include $this->controller;
         }else{
@@ -15,10 +19,10 @@ class Router
     }
 
     public function executeMethod():void{
-        if(!empty($_REQUEST["method"]) && !empty($_REQUEST["controller"]) && method_exists($_REQUEST["controller"], $_REQUEST["method"])){
+        if(!empty($_REQUEST[$this->viewPathMethodName]) && !empty($_REQUEST[$this->viewPathControllerName]) && method_exists($_REQUEST[$this->viewPathControllerName], $_REQUEST[$this->viewPathMethodName])){
 
-            $method = $_REQUEST["method"];
-            $controller = new $_REQUEST["controller"];
+            $method = $_REQUEST[$this->viewPathMethodName];
+            $controller = new $_REQUEST[$this->viewPathControllerName];
             $controller->$method();
         }else{
             echo "<br>no method found<br>";
@@ -27,7 +31,7 @@ class Router
 
     public function getController()
     {
-        return $_REQUEST["controller"];     
+        return $_REQUEST[$this->viewPathControllerName];     
     }
 
 }
