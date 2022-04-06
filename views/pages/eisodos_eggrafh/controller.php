@@ -23,31 +23,21 @@ class Controller{
         $router->redirect("?page=home&method=home");
     }
 
-    public function test2(){
-
-    //print_r($user->select());
-    //print_r($user->select(['id ='=>$_REQUEST["user_id"]]));
-    //print_r($user->select(['name ='=>$_REQUEST["name"], 'id ='=>$_REQUEST["user_id"]]));
-    //$user->update();
-    //$user->insert();
-    //$user->delete(['id ='=>$_REQUEST["user_id"]], true);
-    //$user->truncate();
+    public function register(){    
         $user = new User();
+        $request = new Request();        
+        $user->name = $request->get("name");
+        $user->lastname = $request->get("lastname");
+        $user->amka = $request->get("amka");
+        $user->afm = $request->get("afm");
+        $user->artaftotitas = $request->get("artaftotitas");
+        $user->age = $request->get("age");
+        $user->gender = $request->get("gender");
+        $user->email = $request->get("email");
+        $user->mobilephone = $request->get("mobilephone");
+        $user->role = $request->get("role");
 
-        $user->id =2;
-        $user->name = "despoinaki2";
-        $user->lastname = "alexiadou";
-        $user->amka = "066452627";
-        $user->afm = "066452627";
-        $user->artaftotitas = "1233123123";
-        $user->age = "23";
-        $user->gender = "1";
-        $user->email = "themhz@gmail.com";
-        $user->mobilephone = "6987556486";
-        $user->role = 0;
-
-        print_r($user->select());
-        echo "ok";
+        return $user->insert();
     }
 
 }

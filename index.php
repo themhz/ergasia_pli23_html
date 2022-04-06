@@ -7,6 +7,7 @@ error_reporting(E_ALL);
 $includes = array();
 $includes[] = "config.php";
 $includes[] = "classes/core/database.php";
+$includes[] = "classes/core/request.php";
 $includes[] = "classes/core/model.php";
 $includes[] = "classes/core/view.php";
 $includes[] = "classes/core/router.php";

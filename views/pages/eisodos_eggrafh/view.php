@@ -18,7 +18,7 @@
                     </form>
                 </div>
                 <div class="box-r">
-                    <form>
+                    <form action="?page=eisodos_eggrafh&method=register" method="post">
                         <div class="register">
         
                             <h1>Οδηγίες εγγραφής στην πλατφόρμα</h1>
