@@ -33,7 +33,7 @@ class Model
                 $sql .= " where $key ";
             } else {
 
-                $sql .= "and $key ";
+                $sql .= " and $key ";
             }
 
             if (is_numeric($value)) {

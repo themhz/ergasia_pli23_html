@@ -24,7 +24,7 @@
     <!-- Γίνετε επίσης χρήση μια φόρμας στην περίπτωση του Login για να ποστάρονται τα δεδομένα και τέλος κάποιων input δομών για χρήση κουμπιών.  -->
     <div class="header">
         <div class="left">
-            <a href="/"><img src="views/template/logo.png"></a>
+            <a href="?"><img src="views/template/logo.png"></a>
         </div>
         <div class="center">
             <h1>Πλατφόρμα εμβολιασμού</h1>
@@ -39,11 +39,11 @@
     <div class="main border-full">
         <div class="left border-right">
             <ul class="menu">
-                <li class="active"><a href="?page=home&method=home">Αρχική σελίδα</a></li>
-                <li><a href="?page=emboliastika_kentra&method=emboliastika_kentra">Εμβολιαστικά Κέντρα</a></li>
-                <li><a href="?page=odigies_mvoliasmou&method=odigies_mvoliasmou">Οδηγίες εμβολιασμού</a></li>
-                <li><a href="?page=odigies_egrafis_isodou&method=odigies_egrafis_isodou">Οδηγίες εγγραφής/εισόδου</a></li>
-                <li><a href="?page=anakoinoseis&method=anakoinoseis">Ανακοινώσεις</a></li>
+                <li id="home"><a href="?page=home&method=home">Αρχική σελίδα</a></li>
+                <li id="emboliastika_kentra"><a href="?page=emboliastika_kentra&method=emboliastika_kentra">Εμβολιαστικά Κέντρα</a></li>
+                <li id="odigies_mvoliasmou"><a href="?page=odigies_mvoliasmou&method=odigies_mvoliasmou">Οδηγίες εμβολιασμού</a></li>
+                <li id="odigies_egrafis_isodou"><a href="?page=odigies_egrafis_isodou&method=odigies_egrafis_isodou">Οδηγίες εγγραφής/εισόδου</a></li>
+                <li id="anakoinoseis"><a href="?page=anakoinoseis&method=anakoinoseis">Ανακοινώσεις</a></li>
             </ul>
         </div>
         <div class="right">
@@ -53,5 +53,15 @@
     <div class="footer">
         <a href="https://oreina.epidomata.gov.gr/Content/pdfs/terms-oreina.epidomata.gov.gr.pdf" target="_blank">Όροι χρήσης</a><div class="dash">|</div><a href="https://www.eap.gr/wp-content/uploads/2020/10/oroi-xr.pdf" target="_blank">Πολιτική απορρήτου</a>        
     </div>
+
+    <script>
+        document.addEventListener('readystatechange', function(evt) {
+            if (evt.target.readyState == "complete") {
+                <?php if(isset($_GET["page"]) && $_GET["page"]!="login") {?>
+                    document.getElementById("<?php echo $_GET["page"] ?>").className = "active";
+                <?php }?>
+            }
+        }, false);
+    </script>
 </body>
 </html>

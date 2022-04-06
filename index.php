@@ -4,28 +4,31 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 
-$tasks = array();
-$tasks[] = "config.php";
-$tasks[] = "classes/core/database.php";
-$tasks[] = "classes/core/model.php";
-$tasks[] = "classes/core/view.php";
-$tasks[] = "classes/core/router.php";
-$tasks[] = "classes/models/entities/user.php";
+$includes = array();
+$includes[] = "config.php";
+$includes[] = "classes/core/database.php";
+$includes[] = "classes/core/model.php";
+$includes[] = "classes/core/view.php";
+$includes[] = "classes/core/router.php";
+$includes[] = "classes/core/account.php";
+$includes[] = "classes/models/entities/user.php";
 
 
-foreach($tasks as $file){
-    include $file;
+foreach($includes as $include){
+    include $include;
+}
+
+$user = new User();
+$account = new Account($user);
+$router = new Router();
+
+if($account->authenticate()){    
+    $router->loadController();
+    $router->executeMethod();
+}else{
+    
+    $router->loadController("eisodos_eggrafh");    
+    $router->executeMethod("eisodos_eggrafh");
 }
 
 
-
-
-
-
-
-// $controler =  new Controller();
-// echo $controler->method;
-
-$router = new Router();
-$router->loadController();
-$router->executeMethod();

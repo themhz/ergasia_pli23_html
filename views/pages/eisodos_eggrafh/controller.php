@@ -3,7 +3,9 @@
 class Controller{
 
     public function eisodos_eggrafh(){
+
         $view = new view();
+        
         $view->render("eisodos_eggrafh");
     }
 
