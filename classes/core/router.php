@@ -10,6 +10,7 @@ class Router
          
     public function loadController($controller = ""): void{       
       
+       
         if($controller==""){
             $this->controller = $this->viewPath.'/'.$this->getController().'/controller.php';       
         }else{
@@ -53,6 +54,7 @@ class Router
 
     public function getController()
     {
+      
         if(isset($_REQUEST[$this->viewPathControllerName]))
             return $_REQUEST[$this->viewPathControllerName];
         else
@@ -69,6 +71,11 @@ class Router
             (object)["page"=>"odigies_egrafis_isodou","level"=>1],
             (object)["page"=>"odigies_mvoliasmou","level"=>1],
         ];
+    }
+
+    public function redirect($url){
+        header("Location: $url");
+
     }
 
 }

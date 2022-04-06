@@ -32,7 +32,7 @@
         </div>
         <div class="right">
             <div class="login">
-                <a href="?page=eisodos_eggrafh&method=eisodos_eggrafh">Login</a><div class="dash">/</div><a href="#">Logout</a>
+                <a href="?page=eisodos_eggrafh&method=eisodos_eggrafh">Login</a><div class="dash">/</div><a href="?page=eisodos_eggrafh&method=logout">Logout</a>
             </div>
         </div>
     </div>

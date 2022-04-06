@@ -1,6 +1,6 @@
 <div class="box">
                 <div class="box-l">
-                    <form>
+                    <form action="?page=eisodos_eggrafh&method=login" method="post">
                         <div class="login">
         
                             <h1>Είσοδος χρήστη</h1>
@@ -8,10 +8,8 @@
                                 Παρακαλώ εισάγετε τον Α.Μ.Κ.Α και τον Α.Φ.Μ που δηλώσατε κατά την εγγραφή σας και πατήστε το κουμπί "Είσοδος"
                             </p>
                             <ul>
-                                <li><label for="amka">Α.Μ.Κ.Α</label><input type="text" class="form-control" id="amka"
-                                        name="amka" required></li>
-                                <li><label for="afm">Α.Φ.Μ</label><input type="text" class="form-control" id="afm" name="afm"
-                                        required></li>                                
+                                <li><label for="amka">Α.Μ.Κ.Α</label><input type="text" class="form-control" id="amka" name="amka" required></li>
+                                <li><label for="afm">Α.Φ.Μ</label><input type="text" class="form-control" id="afm" name="afm" required></li>                                
                             </ul>
                             <input type="submit" value="Εϊσοδος/Εγγραφή" class="button"><br><br>
                             
