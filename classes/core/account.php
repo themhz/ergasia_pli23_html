@@ -31,8 +31,34 @@ class Account{
         return false;
     }
 
-    public function register($user): bool{
-        return $user->insert();
+    public function register(): bool{
+        $user = new User();
+        $request = new Request();
+        $user->amka = $request->get("amka");
+        $user->afm = $request->get("afm");
+
+        $checkUser = $user->select(["amka="=>$user->amka, "afm="=>$user->afm]);                
+        if(empty($checkUser)){
+            $user->name = $request->get("name");
+            $user->lastname = $request->get("lastname");        
+            $user->artaftotitas = $request->get("artaftotitas");
+            $user->age = $request->get("age");
+            $user->gender = $request->get("gender");
+            $user->email = $request->get("email");
+            $user->mobilephone = $request->get("mobilephone");
+            $user->role = $request->get("role");
+            return  $user->insert();
+        }else{
+            echo "Ο χρήστης με AMKA:$user->amka και ΑΦΜ:$user->afm υπάρχει ήδη!";
+            header('Refresh: 2; URL=?page=eisodos_eggrafh&method=eisodos_eggrafh');
+
+            return false;
+        }
+
+                
+        
+        
+        
     }
 
     public function logout(): bool{

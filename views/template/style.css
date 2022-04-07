@@ -250,3 +250,8 @@ body {
     background-color: #ffff;
     color:black;
 }
+
+.form-control{
+    width:130px;
+    cursor:pointer;
+}

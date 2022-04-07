@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="views/template/style.css">
     <!-- Ο τίτλος της σελίδας -->
     <title>Πλατφόρμα εμβολιασμού</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 </head>
 
 <!-- Έναρξη του σώματος της σελίδας -->

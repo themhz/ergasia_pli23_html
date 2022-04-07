@@ -18,7 +18,7 @@
                     </form>
                 </div>
                 <div class="box-r">
-                    <form action="?page=eisodos_eggrafh&method=register" method="post">
+                    <form action="?page=eisodos_eggrafh&method=register" method="post" >
                         <div class="register">
         
                             <h1>Οδηγίες εγγραφής στην πλατφόρμα</h1>
@@ -36,19 +36,30 @@
                                         name="amka" required></li>
                                 <li><label for="afm">Α.Φ.Μ</label><input type="text" class="form-control" id="afm" name="afm"
                                         required></li>
-                                <li><label for="taftotita">Αρ.Ταυτότητας</label><input type="text" class="form-control"
-                                        id="taftotita" name="taftotita" required></li>
+                                <li><label for="artaftotita">Αρ.Ταυτότητας</label><input type="text" class="form-control"
+                                        id="artaftotita" name="artaftotita" required></li>
                                 <li><label for="age">Ηλικία</label><input type="text" class="form-control" id="age" name="age"
                                         required></li>
-                                <li><label for="age">Φύλο</label><input type="text" class="form-control" id="sex" name="sex">
+                                <li><label for="age">Φύλο</label>                                    
+                                    <select class="form-control" id="gender" name="gender">
+                                        <option value="1">Αρέν</option>
+                                        <option value="2">Θυλ</option>
+                                    </select>
                                 </li>
                                 <li><label for="email">e-mail</label><input type="text" class="form-control" id="email"
                                         name="email"></li>
-                                <li><label for="mobile">Κινητό τηλέφωνο</label><input type="text" class="form-control"
-                                        id="mobile" name="mobile" required></li>
+                                <li><label for="mobilephone">Κινητό τηλέφωνο</label><input type="text" class="form-control"
+                                        id="mobilephone" name="mobilephone" required></li>
+                                <li><label for="role">Ρόλος</label>                                    
+                                    <select class="form-control" id="role" name="role">
+                                        <option value="1">Πολίτης</option>
+                                        <option value="2">Γιατρός</option>
+                                    </select>
+                                </li>
                             </ul>
                             <input type="submit" value="Εϊσοδος/Εγγραφή" class="button">
+                            <input type="text" value="1" name="register" style="display:none;">
                         </div>
                     </form>
                 </div>
-            </div>   
+            </div>             

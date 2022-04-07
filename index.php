@@ -22,7 +22,11 @@ foreach($includes as $include){
 $user = new User();
 $account = new Account($user);
 $router = new Router();
+$request = new Request();
 
+if($request->get("register")=="1"){
+    $account->register();
+}
 if($account->authenticate()){    
     $router->loadController();
     $router->executeMethod();
