@@ -85,7 +85,7 @@ class Model
         return $results;
     }
 
-    public function update($debug=false, $dontupdate = []): array
+    public function update($update = [], $debug=false): array
     {
         $db = Database::getInstance();
         $sql = "update $this->__tablename set ";
@@ -94,7 +94,7 @@ class Model
         $first = true;
 
         foreach ($this as $key => $value) {
-            if ($key != 'id' && $key != '__tablename' && $key != 'rules' && !in_array($key, $dontupdate)) {
+            if ($key != 'id' && $key != '__tablename' && in_array($key, $update)) {
                 $params += [$key => $value];
 
                 if ($first == true) {

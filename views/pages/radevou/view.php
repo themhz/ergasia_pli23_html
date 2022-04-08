@@ -19,8 +19,8 @@
 
 <?php
 
-$apointments = new Appointment();
-$apointments = $apointments->select();
+    $apointments = new Appointment();
+    
 ?>
 <br>
 <table class="table" border=1>
@@ -30,19 +30,51 @@ $apointments = $apointments->select();
     <th>Ημεροηνία ραντεβού </th>
     <th>ώρα ραντεβού</th>
 </tr>
-<?php foreach ($apointments as $apointment){ ?>
-<tr>
-    <td><?php echo $apointment->id ?></td>
-    <td><?php echo $apointment->vaccination_center_id ?></td>    
-    <td><?php echo $apointment->appointment_date ?></td>
-    <td><?php echo $apointment->appointment_time ?></td>
-    <td>
-        <form action="?page=radevou&method=cancel" method="post">
-        <button>Ακύρωση</button>
-        </form>
-    </td>
-</tr>
+<?php 
+//Επιλογή της κράτησης εμβολιασμού
+$hasApointment = $apointments->select(['user_id ='=>$id]);
 
-<?php } ?>
+//Έλεγχος αν έχει κάνει κράτηση. Αν δεν έχει γίνει, τότε θα ταξινομήσω βάση ημερομηνιών όλων των διαθέσιμων ραντεβού
+if(empty($hasApointment)){
+
+    //Πήγα να φτιάξω ένα μίνι orm αλλά δεν δουλεύει με το or σωστά έτσι όπως το έχω φτιάξει.. οπότε έβαλα να μπορώ να κάνω custom select
+    //$apointments = $apointments->select( [], ["appointment_date"=> "asc", "user_id is"=>"null",]);
+    $apointments = $apointments->customselect("select * from appointments where user_id is null or  user_id = 0 order by appointment_date asc");
+    foreach ($apointments as $apointment){ ?>
+    <tr>
+        <!-- Εμφανίζω τα πεδία μου -->
+        <td><?php echo $apointment->id ?></td>
+        <td><?php echo $apointment->vaccination_center_id ?></td>    
+        <td><?php echo $apointment->appointment_date ?></td>
+        <td><?php echo $apointment->appointment_time ?></td>
+        <td>
+            <!-- Φόρμα για να μπορώ να κάνω κράτηση  -->
+            <form action="?page=radevou&method=create" method="post">            
+                <button>Κράτηση</button>
+                <input type="text" style="display:none" name="id" id="id" value="<?php echo $apointment->id ?>" >
+            </form>
+        </td>
+    </tr>
+    
+    <?php } 
+}else{
+   //Αν έχει κάνει ραντεβού τότε εμφανίζω μόνο αυτό
+    foreach ($hasApointment  as $apointment){ ?>
+    <tr>
+        <td><?php echo $apointment->id ?></td>
+        <td><?php echo $apointment->vaccination_center_id ?></td>    
+        <td><?php echo $apointment->appointment_date ?></td>
+        <td><?php echo $apointment->appointment_time ?></td>
+        <td>
+            <form action="?page=radevou&method=cancel" method="post">            
+            <button>Ακύρωση</button>
+            <input type="text" style="display:none" name="id" id="id" value="<?php echo $apointment->id ?>" >
+            </form>
+        </td>
+    </tr>    
+    <?php }
+}
+?>
+
 
 </table>
