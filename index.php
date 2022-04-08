@@ -14,6 +14,9 @@ $includes[] = "classes/core/view.php";
 $includes[] = "classes/core/router.php";
 $includes[] = "classes/core/account.php";
 $includes[] = "classes/models/entities/user.php";
+$includes[] = "classes/models/entities/appointment.php";
+$includes[] = "classes/models/entities/doctor.php";
+$includes[] = "classes/models/entities/vaccination_center.php";
 
 
 foreach($includes as $include){

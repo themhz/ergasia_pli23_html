@@ -1,3 +1,8 @@
+<?php
+
+
+?>
+
 <form>
     <table>
         <tr><td>Όνομα:</td><td><?php echo isset($name)? $name:""; ?></td></tr>
@@ -11,3 +16,33 @@
         <tr><td>Κινητό Τηλ.:</td><td><?php echo isset($mobilephone)? $mobilephone:""; ?></td></tr>
     </table>
 </form>
+
+<?php
+
+$apointments = new Appointment();
+$apointments = $apointments->select();
+?>
+<br>
+<table class="table" border=1>
+<tr>
+    <th>ID</th>
+    <th>Κέντρο</th>
+    <th>Ημεροηνία ραντεβού </th>
+    <th>ώρα ραντεβού</th>
+</tr>
+<?php foreach ($apointments as $apointment){ ?>
+<tr>
+    <td><?php echo $apointment->id ?></td>
+    <td><?php echo $apointment->vaccination_center_id ?></td>    
+    <td><?php echo $apointment->appointment_date ?></td>
+    <td><?php echo $apointment->appointment_time ?></td>
+    <td>
+        <form action="?page=radevou&method=cancel" method="post">
+        <button>Ακύρωση</button>
+        </form>
+    </td>
+</tr>
+
+<?php } ?>
+
+</table>
