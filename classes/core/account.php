@@ -1,10 +1,18 @@
 <?php
+// Είναι η κλάση account που διαχειρήζεται τους λογαριασμούς του συστηματος. 
+// 
 class Account{   
+
+    //Συνδέεται με τον user
     public User $user;
     
+
+    //Υπάρχει ένας constructor για να αρχικοποιήτε ο user απο εδω
     public function __construct(User $u){        
-        $this->user = $u;
+        $this->user = $u;        
     }
+
+    //Μια μέθοδο για να μπορεί να κάνει αυθεντικοποίηση ο χρήστης αν ναι τότε κάνει Login
     public function authenticate(): bool{                
       
         if(isset($_SESSION["islogged"]) && $_SESSION["islogged"] == 1){
@@ -15,6 +23,7 @@ class Account{
     }
     
 
+    //Η μέθοδος της Login
     public function login(): bool{              
         if(isset($_REQUEST["amka"]) && isset($_REQUEST["afm"])){
             $result = $this->user->select(["amka="=>$_REQUEST["amka"], "afm="=> $_REQUEST["afm"]]);
@@ -31,11 +40,7 @@ class Account{
         }        
     }
 
-
-    public function authorize(): bool{
-        return false;
-    }
-
+    //Η Μέθοδος για να κάνει register ο user
     public function register(): bool{
         $user = new User();
         $request = new Request();
@@ -61,6 +66,8 @@ class Account{
         }                                        
     }
 
+
+    //Με αυτή την μέθοδο γίνεται Logout ο χρήστης. 
     public function logout(): bool{
         return false;
     }

@@ -1,5 +1,6 @@
 <?php
 
+//Μια κλάση για να κάνει σύνδεση η εφαρμογή στην βάση δεδομένων. Χρησιμοποιώ singleto pattern
 class Database
 {
     public $dbh;

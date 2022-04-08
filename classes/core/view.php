@@ -1,8 +1,8 @@
 <?php
 
+//Η κλάση αυτή χρησιμποιητε για να εμφανίζω τα view σε κάθε σελίδα.
 class View
 { 
-
     public $template = "views/template/index.php";
     public $pages = "views/pages";
 

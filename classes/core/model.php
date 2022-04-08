@@ -1,4 +1,6 @@
 <?php
+
+//Μια κλάση που έχω φτιάξει για να μπορώ να διαχειριστώ την sql.
 class Model
 {
 
@@ -20,6 +22,8 @@ class Model
         }
     }
 
+    //Η μέθοδος αυτή χρησιμποιητε για να κάνω select
+    //Η παράμετρος είναι για να κάνω το where ποιο δυναμικό.. το order για να κάνει ταξινόμιση και το debug για να εμφανίω το query
     public function select(array $params = [], array $order=[], $debug = false): array
     {
         $first = true;
@@ -70,6 +74,7 @@ class Model
         return $results;
     }
 
+    //Σε περίπτωση που δεν μπορώ να κάνω σωστό select έχω το custom για να κάνω το join
     public function customselect($sql, $params = []): array
     {
 
@@ -85,6 +90,7 @@ class Model
         return $results;
     }
 
+    //Μέθοδος για update
     public function update($update = [], $debug=false): array
     {
         $db = Database::getInstance();
@@ -128,6 +134,7 @@ class Model
         }
     }
 
+    //Μέθοδος για το insert
     public function insert($debug=false): int
     {
         $db = Database::getInstance();
@@ -165,114 +172,15 @@ class Model
         return $db->dbh->lastInsertId();
     }
 
-    //Makes the selection using all the foreign keys and brings a dataset containing everything about the specific entity
-    public function selectWithRefs(array $params = [], array $order=[])
-    {
-        $db = Database::getInstance();        
-        $sql = "select a.COLUMN_NAME, a.REFERENCED_TABLE_NAME, a.REFERENCED_COLUMN_NAME from INFORMATION_SCHEMA.KEY_COLUMN_USAGE a
-            where a.CONSTRAINT_SCHEMA = '" . CONFIG['db.name'] . "'
-            AND a.TABLE_NAME = '$this->__tablename'
-            AND a.REFERENCED_TABLE_NAME is not null";
 
-        $sth = $db->dbh->prepare($sql);
-        $sth->execute();
-        $results = $sth->fetchAll(\PDO::FETCH_OBJ);
-
-
-        $sqljoin = "";
-        $tables = [];
-        for ($i = 0; $i < count($results); $i++) {
-
-            if (!in_array($results[$i]->REFERENCED_TABLE_NAME, $tables)) {
-                $sqljoin .= " inner join " . $results[$i]->REFERENCED_TABLE_NAME . " on $this->__tablename." . $results[$i]->COLUMN_NAME;
-                $sqljoin .= " = " . $results[$i]->REFERENCED_TABLE_NAME . "." . $results[$i]->REFERENCED_COLUMN_NAME;
-                $tables[] = $results[$i]->REFERENCED_TABLE_NAME;
-            } else {
-                $sqljoin .= " inner join " . $results[$i]->REFERENCED_TABLE_NAME . " r$i on $this->__tablename." . $results[$i]->COLUMN_NAME;
-                $sqljoin .= " = r$i." . $results[$i]->REFERENCED_COLUMN_NAME;
-            }
-        }
-
-        $columns = [];
-        $select = "select ";
-        $firstcol = true;
-
-        for ($i = 0; $i < count($tables); $i++) {
-
-            $sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = '" . CONFIG['db.name'] . "' AND TABLE_NAME = '" . $tables[$i] . "'";
-            $sth = $db->dbh->prepare($sql);
-            
-            $sth->execute();
-            $results = $sth->fetchAll(\PDO::FETCH_OBJ);
-            
-            for ($j = 0; $j < count($results); $j++) {
-                if (!in_array($results[$j]->COLUMN_NAME, $columns)) {
-                    $columns[] = $results[$j]->COLUMN_NAME;
-                    if($firstcol == true){
-                        $firstcol = false;
-                        $select.= ' '.$tables[$i].'.'.$results[$j]->COLUMN_NAME. ' ';
-                    }else{                        
-                        $select.= ' ,'.$tables[$i].'.'.$results[$j]->COLUMN_NAME. ' ';
-                    }
-                    
-                } else {
-                    $columns[] = $tables[$i].".".$results[$j]->COLUMN_NAME . ' as ' . $tables[$i] . '_' . $results[$j]->COLUMN_NAME;
-                    $select.= ' ,'.$tables[$i].".".$results[$j]->COLUMN_NAME . ' as ' . $tables[$i] . '_' . $results[$j]->COLUMN_NAME;
-                }
-            }
-        }        
-
-        $sql = " $select ";
-        $sql .= " from $this->__tablename";                
-        $sql = $sql.$sqljoin;
-
-        
-        $first = true;
-
-        foreach ($params  as $key => $value) {
-            if ($first == true) {
-                $first = false;
-                $sql .= " where $key ";
-            } else {
-
-                $sql .= " $key ";
-            }
-
-            if (is_numeric($value)) {
-                $sql .= $value;
-            } else {
-                $sql .= "'" . $value . "'";
-            }
-        }
-
-        $first = true;
-        foreach ($order  as $key => $value) {
-            if ($first == true) {
-                $first = false;
-                $sql .= " order by $key ";
-                $sql .= " $value ";
-            } else {
-
-                $sql .= " ,$key ";
-                $sql .= " $value ";
-            }                            
-            
-        }
-
-        
-        $sth = $db->dbh->prepare($sql);
-        $sth->execute();
-        $results = $sth->fetchAll(\PDO::FETCH_OBJ);        
-
-        return $results;
-    }
-
+    //Μέθοδος για να παίρνω
     public function getRegdate()
     {
-            $date = new \DateTime();
+            $date = new DateTime();
             return $date->format('Y/m/d H:i:s');
     }
 
+    //Μια μέθοδος για να μετράω τις εγγραφές
     public function counter($sql, $params){
         $db = Database::getInstance();  
 
@@ -284,11 +192,9 @@ class Model
         return $results;
 
     }
-    public function calculateNumberOfPages($rows, $pagelength){
-        $pages = $rows/$pagelength;
-        return $pages;
-    }
 
+
+    //Και μια μέθοδος για να διαγράφω
     public function delete(Array $params=[], $debug=false){
         $db = Database::getInstance();
         $sql = "DELETE from $this->__tablename ";
@@ -330,6 +236,7 @@ class Model
     }
 
 
+    //Και μια μέθοδος για να κάνω truncate τον πίνακα
     public function truncate($debug = false){
         $db = Database::getInstance();
         $sql = "truncate $this->__tablename ";

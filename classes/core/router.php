@@ -1,5 +1,6 @@
 <?php
 
+//Ένας δρομολογιτής για να μπορώ να κάνω το routing
 class Router
 {
     public $controller;
@@ -29,7 +30,7 @@ class Router
 
     public function executeMethod($method = ''):void{
         
-        if($method == ''){            
+        if($method == ''){                        
             if(!empty($_REQUEST[$this->viewPathMethodName]) && !empty($_REQUEST[$this->viewPathControllerName]) && method_exists("Controller", $_REQUEST[$this->viewPathMethodName])){
 
                 $method = $_REQUEST[$this->viewPathMethodName];
