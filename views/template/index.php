@@ -44,11 +44,18 @@
                 <li id="emboliastika_kentra"><a href="?page=emboliastika_kentra&method=emboliastika_kentra">Εμβολιαστικά Κέντρα</a></li>
                 <li id="odigies_mvoliasmou"><a href="?page=odigies_mvoliasmou&method=odigies_mvoliasmou">Οδηγίες εμβολιασμού</a></li>
                 <li id="odigies_egrafis_isodou"><a href="?page=odigies_egrafis_isodou&method=odigies_egrafis_isodou">Οδηγίες εγγραφής/εισόδου</a></li>
-                <li id="anakoinoseis"><a href="?page=anakoinoseis&method=anakoinoseis">Ανακοινώσεις</a></li>
-                <li id="radevou"><a href="?page=radevou&method=radevou">Ραντεβού</a></li>
+                <li id="anakoinoseis"><a href="?page=anakoinoseis&method=anakoinoseis">Ανακοινώσεις</a></li>   
+
+                <!-- 1 είναι πολίτης 2 είναι γιατρός -->
+                <?php  if($_SESSION["user"]->role == "1")  {?>
+                    <li id="radevou"><a href="?page=radevou&method=radevou">Ραντεβού</a></li>
+                <?php } else {?>             
+                    <li id="radevou"><a href="?page=radevou_doctor&method=radevou_doctor">Ραντεβού</a></li>
+                <?php } ?>
             </ul>
         </div>
         <div class="right">
+        
         {{VIEW}}            
         </div>
     </div>
