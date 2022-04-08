@@ -1,24 +1,18 @@
 <?php
 
-class User extends Model
+class Appointment extends Model
 {
     public int $id = -1;
-    public string $name ="";
-    public string $lastname ="";
-    public string $amka ="";
-    public string $afm ="";
-    public string $artaftotitas ="";
-    public string $age ="";
-    public string $gender ="";
-    public string $email ="";
-    public string $mobilephone ="";
-    public string $role ="";
+    public string $vaccination_center_id ="";
+    public string $user_id ="";
+    public string $appointment_date ="";
+    public string $appointment_time ="";
+    public string $status ="";    
     public string $regdate ="";
 
     public function __construct()
     {
-        parent::__construct('users');
-
+        parent::__construct('appointments');
     }
 
     /**
@@ -40,5 +34,7 @@ class User extends Model
 
         return $this;
     }
-    
+
+
+
 }

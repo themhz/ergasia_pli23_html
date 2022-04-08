@@ -1,24 +1,16 @@
 <?php
 
-class User extends Model
+class Vaccination_center extends Model
 {
-    public int $id = -1;
+    public int $id = -1;    
     public string $name ="";
-    public string $lastname ="";
-    public string $amka ="";
-    public string $afm ="";
-    public string $artaftotitas ="";
-    public string $age ="";
-    public string $gender ="";
-    public string $email ="";
-    public string $mobilephone ="";
-    public string $role ="";
+    public string $taxidromikos_kodikas ="";
+    public string $phone ="";
     public string $regdate ="";
 
     public function __construct()
     {
-        parent::__construct('users');
-
+        parent::__construct('vaccination_centers');
     }
 
     /**
@@ -40,5 +32,4 @@ class User extends Model
 
         return $this;
     }
-    
 }

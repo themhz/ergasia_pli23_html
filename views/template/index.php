@@ -45,6 +45,7 @@
                 <li id="odigies_mvoliasmou"><a href="?page=odigies_mvoliasmou&method=odigies_mvoliasmou">Οδηγίες εμβολιασμού</a></li>
                 <li id="odigies_egrafis_isodou"><a href="?page=odigies_egrafis_isodou&method=odigies_egrafis_isodou">Οδηγίες εγγραφής/εισόδου</a></li>
                 <li id="anakoinoseis"><a href="?page=anakoinoseis&method=anakoinoseis">Ανακοινώσεις</a></li>
+                <li id="radevou"><a href="?page=radevou&method=radevou">Ραντεβού</a></li>
             </ul>
         </div>
         <div class="right">

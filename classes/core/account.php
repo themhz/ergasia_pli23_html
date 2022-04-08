@@ -2,8 +2,7 @@
 class Account{   
     public User $user;
     
-    public function __construct(User $u){
-        session_start();
+    public function __construct(User $u){        
         $this->user = $u;
     }
     public function authenticate(): bool{                
@@ -19,8 +18,14 @@ class Account{
     public function login(): bool{              
         if(isset($_REQUEST["amka"]) && isset($_REQUEST["afm"])){
             $result = $this->user->select(["amka="=>$_REQUEST["amka"], "afm="=> $_REQUEST["afm"]]);
-            $_SESSION["islogged"] = !empty($result);
-            return !empty($result);
+
+            if(!empty($result)){
+                $_SESSION["user"]=$result[0];            
+                $_SESSION["islogged"] = 1;
+                return true;
+            }else{
+                return false;
+            }                        
         }else{
             return false;
         }        
@@ -53,12 +58,7 @@ class Account{
             header('Refresh: 2; URL=?page=eisodos_eggrafh&method=eisodos_eggrafh');
 
             return false;
-        }
-
-                
-        
-        
-        
+        }                                        
     }
 
     public function logout(): bool{

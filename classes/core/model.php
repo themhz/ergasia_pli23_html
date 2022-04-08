@@ -3,11 +3,10 @@ class Model
 {
 
     protected $__tablename;
-    private $rules = [];
-    public function __construct(string $tablename, array $rules = [])
+    
+    public function __construct(string $tablename)
     {
-        $this->__tablename = $tablename;
-        $this->rules = $rules;
+        $this->__tablename = $tablename;        
     }
 
     public function loadData($data)
@@ -351,23 +350,7 @@ class Model
         }
     }
 
-    public function validate() : array{
 
-        $errors = [];
-        // $validator = new Validator();
-        // foreach($this->rules as $rules){
-        //     foreach($rules[1] as $rule){
-
-
-        //         $obj = $validator->selectValidation($rule);
-        //         if(!$obj->validate($this->{$rules[0]})){
-        //             array_push($errors, [$rules[0], $rule]);
-        //         }
-        //     }
-        // }
-
-        return $errors;
-    }
 
     public function filterInsert($key, $value) : bool{
         return !empty($value) &&
