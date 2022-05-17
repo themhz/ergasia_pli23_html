@@ -4,9 +4,11 @@
 //τον πυρήνα της εφαρμογής core
 //και τις οντότητες entities καθώς και ένα μοντέλο για την διαχείρηση τους στην βάση δεδομένων
 //Εισάγω τις εντολές αυτές για να μπορώ και να πιάνω το σφάλμα
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+error_reporting(E_ERROR | E_PARSE);
+
 
 //Ενεργοποιούμε το session για να κρατάμε το username και το password
 session_start();
