@@ -32,9 +32,17 @@
             <h2>Υπουργείο Υγείας</h2>
         </div>
         <div class="right">
-            <div class="login">
-                <a href="?page=eisodos_eggrafh&method=eisodos_eggrafh">Login</a><div class="dash">/</div><a href="?page=eisodos_eggrafh&method=logout">Logout</a>
-            </div>
+            
+                <?php if( $_SESSION["islogged"]==1){ ?>
+                    <div class="login">
+                        <a href="?page=eisodos_eggrafh&method=logout">Logout</a>
+                    </div>
+                <?php } else { ?>      
+                    <div class="logout">              
+                        <a href="?page=eisodos_eggrafh&method=eisodos_eggrafh">Login</a>
+                    </div>
+                <?php }?>
+            
         </div>
     </div>
     <div class="main border-full">
@@ -52,6 +60,8 @@
                 <?php } else {?>             
                     <li id="radevou"><a href="?page=radevou_doctor&method=radevou_doctor">Ραντεβού</a></li>
                 <?php } ?>
+                
+                <li id="profile"><a href="?page=profile&method=profile">Προφίλ</a></li>   
             </ul>
         </div>
         <div class="right">

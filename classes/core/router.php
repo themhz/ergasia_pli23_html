@@ -71,6 +71,7 @@ class Router
             (object)["page"=>"login","level"=>1],
             (object)["page"=>"odigies_egrafis_isodou","level"=>1],
             (object)["page"=>"odigies_mvoliasmou","level"=>1],
+            (object)["page"=>"profile","level"=>1],
         ];
     }
 

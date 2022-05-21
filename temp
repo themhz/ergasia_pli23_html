@@ -1,0 +1,140 @@
+<script>
+//Μια javascript συνάρτηση που στέλνει τον user να κάνει εξαγωγή του xml αρχείου από τον controller του φακέλου. Καλεί την μέθοδο studentsxml() μέσα στην php για να παράγει το αρχείο.
+  function exportxml() {
+    window.location = "studentsreport/studentsxml";
+  }
+</script>
+
+<?php
+//Δίνω μια προεπιλεγμένη τιμή να δείχνει το πρώτο εξάμηνο σε περίπτωση που δεν έχει επιλέξει κάποιο
+//Αλλιώς αν είναι επιλεγμένο το semester από το dropdown θα το θέσω ως μεταβλητή στο $selected γισ να το χρησιμοποιήσω στο query μου μετά
+$selected = 1;
+if (isset($_REQUEST["ddlsemester"])) {
+  $selected = $_REQUEST["ddlsemester"];
+}
+?>
+<!-- Το html κομάτι του panel όπως φαίνετε στην σελίδα -->
+<h1>Αναφορά μαθητών</h1>
+<form id="frmsemester" action="studentsreport" method="post" class="frmsemester">
+  <label for="ddlsemester">Επιλογή εξαμήνου</label>
+  <select name="ddlsemester" class="select">
+    <option value="1" <?php echo $selected == 1 ? "selected" : "" ?>>Πρώτο</option>
+    <option value="2" <?php echo $selected == 2 ? "selected" : "" ?>>Δεύτερο</option>
+    <option value="3" <?php echo $selected == 3 ? "selected" : "" ?>>Τρίτο</option>
+  </select>
+  <input type="submit" value="Εμφάνιση" class="button" />
+  <input type="button" value="Εξαγωγή XML" class="button" onclick="exportxml()" />
+</form>
+<?php
+
+//Το query που θα τρέξω για να επιλέξω την λίστα των μαθητών.
+$semester = $selected;
+$conn = new mysqli('localhost', 'root', '', 'erg3_theotokatos');
+$conn->set_charset("utf8");
+$data = array();
+$sql = "select @rownum := @rownum + 1 AS rank, z.* from (
+        SELECT   
+                a.id,
+                a.name,
+                a.lastname,
+                a.email,
+                a.am,
+                (max(b.semester) =$semester) hassemester,  
+                max(b.semester) semester,  
+                round(avg(c.grade),2) average,
+                count(d.id) 'courses'
+            FROM erg3_theotokatos.users a 	
+                inner join semester b on b.users = a.id and b.semester <=$semester
+                inner join enrolements c on c.users = b.users
+              inner join courses d on d.id = c.courses and d.semester = b.semester
+            where grade >=5 
+            group by a.id,a.name,a.lastname,a.email,a.am 
+            order by semester desc, average desc
+        )z,(SELECT @rownum := 0) r
+      ;        ";
+
+$query = $conn->query($sql);
+
+//Αφού πάρω τα δεδομένα μου τα φέρνω σε έναν πίνακα 
+while ($row = $query->fetch_assoc()) {
+  $data[] = $row;
+}
+
+//Μετά φτιάχνω το αντικείμενο DOMDocument όπως πρέπει να φτιάξω το xml και σετάρω και την κωδικοποίηση σε UTF-8 για να παίζουν τα Ελληνικά
+$xml = new DOMDocument();
+$xml->encoding = 'UTF-8';
+
+//Δημιουργώ το root του XML με την εντολή CreateElement 
+$root = $xml->createElement('students');
+//Και του βάζω ένα Attribue semester = με το επιλεγμένο
+$root->setAttribute("semester", $semester);
+
+//Έπειτα φτιάχνω ένα DOMImplementation για να περάσω το dtd και να κάνω το validate. Εδώ σε αυτό το σημείο το περνάω στην κορυφή του XML για να το κάνω validate
+$creator = new DOMImplementation;
+$doctype = $creator->createDocumentType("students", "", 'students.dtd');
+$xml->appendChild($doctype);
+
+//Εδώ κάνω το ίδιο για να εισάγω το XSL στην κορυφή του XML αρχείου
+$xslt = $xml->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="students.xsl"');
+$xml->appendChild($xslt);
+
+//Εδώ ξεκινάω με ένα μικρό έλεγχο πριν στήσω τα δεδομένα του xml. Τσεκάρω αν υπάρχουν δεδομένα από την βάση. Αν δεν υπάρχουν τότε λέω πως δεν υπάρχουν φοιτητές για το τρέχον εξάμηνο
+//Αλλά εμφανίζω τους φοιτητές του προηγούμενου εξαμήνου. Λίγο περίπλοκο το κάνω αλλά είναι ο μόνος τρόπος να εμφανίζω πληροφορία προηγούμεννω εξαμήνων ενώ δεν υπάρχουν στο τρέχον.
+//Το hassesmester έρχετε από το query τεχνιτά. Δηλαδή αν δείτε το query Κάνει το select του και σε κάθε εξάμηνο ελέγχει αν το τρέχον εξάμηνο είναι ίδιο με αυτό που έχει επιλεχθεί. 
+//Αν δεν είναι φαίρνει false δηλαδή 0, αλλιώς 1. Αν έστω και ενα είναι 1 τότε υπάρχει κάποιος φοιτητές στο εν λόγο εξάμηνο αλλιώς το flag θα παραμήνει false για την παραγωγή του 
+//τελικού μηνύματος στο τέρμα της σελίδας
+$hassemester = false;
+foreach ($data as $user) {
+  if ($user["hassemester"] > 0) {
+    $hassemester = true;
+  }
+
+  //Ξεκινάμε να φτιάχνουμε το xml με το CreateElement
+  $userElement = $root->appendChild($xml->createElement('student'));
+  $userElement->setAttribute("id", "x" . $user["id"]);
+
+  //Δημιουργούμε και κάνουμε append τα δεδομένα στο userElement που είναι το student
+  $userElement->appendChild($xml->createElement('rank', $user["rank"]));
+  $userElement->appendChild($xml->createElement('name', $user["name"]));
+  $userElement->appendChild($xml->createElement('lastname', $user["lastname"]));
+  $userElement->appendChild($xml->createElement('email', $user["email"]));
+  $userElement->appendChild($xml->createElement('am', $user["am"]));
+  $userElement->appendChild($xml->createElement('semester', $user["semester"]));
+  $userElement->appendChild($xml->createElement('average', $user["average"]));
+  $userElement->appendChild($xml->createElement('passed', $user["courses"]));
+
+
+  $root->appendChild($userElement);
+}
+
+//Τοποθετούμε το το userElement στο root. Ο λόγος που ονομάστηκε user και όχι Student είναι επειδή ο student είναι user.
+$xml->appendChild($root);
+
+
+//Ορίζουμε το property αυτό για να είναι beutified το xml
+$xml->formatOutput = true;
+
+//Και τέλος σώζουμε το αρχείο στο students.xml
+$xml->save('pages/studentsreport/students.xml');
+
+//Σε αυτο το σημείο λέμε στο lbxml να μην εμφανίζει τα warning και τα error ακατάστατα πάνω στην σελίδα, για να ελέγξουμε το μήνυμα
+libxml_use_internal_errors(TRUE);
+
+//Φορτώνουμε το xml πάλι
+$dom = new DOMDocument;
+$dom->Load('pages/studentsreport/students.xml');
+//Το κάνουμε validate και αν υπαρχει πρόβλημα εμφανίζουμε το μήνυμα του λάθους
+if (!$dom->validate()) {
+  echo "<div class=\"error\">Σφάλμα στο format του xml<br>";
+  $error = libxml_get_errors();
+  echo $error[0]->message . "<br>";
+  echo $error[1]->message . "</div>";
+}
+
+//Το μήνυμα σε περίπτωση που δεν υπάρχει φοιτητής για το τρέχον επιλεγμένο εξάμηνο
+if ($hassemester == false) {
+  echo "<div class=\"error\">Δεν υπάρχουν φοιτητές στο $semester εξάμηνο</div>";
+}
+?>
+<!-- Τελος ειναι το iframe που χρησιμοποιήσω για να εμφανίσω το xml -->
+<iframe src="pages/studentsreport/students.xml" style="width:100%;height:500px;border:none;"></iframe>

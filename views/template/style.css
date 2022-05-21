@@ -39,8 +39,7 @@ body {
     flex-basis: auto;
     text-align: center;    
 }
-.header .center h1, .header .center h2{
-    
+.header .center h1, .header .center h2{    
     align-self: center;
 }
 
@@ -73,6 +72,32 @@ body {
     background-color:white;
     color:black;
 }
+
+.header .right .logout{
+    display: flex;
+    flex-basis: auto;
+    background-color: blue;
+    color: white;
+    width: 200px;
+    align-self: center;
+    text-align: center;
+    height: 50px;
+    border: 1px solid black;
+}
+.header .right .logout a{
+    color:white;
+    align-self: center;
+    text-align: center;
+    width:50%;
+    height:100%;
+    line-height: 45px;
+}
+.header .right .logout a:hover{
+    background-color:white;
+    color:black;
+}
+
+
 .header .right .dash{
     color:white;
     align-self: center;

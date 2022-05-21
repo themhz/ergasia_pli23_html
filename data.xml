@@ -1,0 +1,19 @@
+<doctorData>
+    <doctor>
+        <fullname></fullname>
+        <artaftotita></artaftotita>
+        <email></email>
+    </doctor>
+    <center>
+        <address></address>
+        <tk></tk>
+        <phone></phone>
+    </center>
+    <apointments>
+        <datetime></datetime>
+        <fullname></fullname>
+        <amka></amka>
+        <age></age>
+        <status></status>
+    </apointments>
+</doctorData>

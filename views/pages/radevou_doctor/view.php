@@ -57,13 +57,20 @@
             <?php } ?>
                 
             
-                <input type="text" style="display:none" name="id" id="id" value="<?php echo $apointment->id ?>" >
+                <input type="text" style="display:none" name="id" id="id" value="<?php echo $apointment->id ?>" >                
             </form>
         </td>
     </tr>
     
-    <?php } 
+    <?php }     
 ?>
-
-
 </table>
+<br>
+
+<input type="button" value="Εξαγωγή XML" class="button" onclick="exportxml()" />
+<script>
+//Μια javascript συνάρτηση που στέλνει τον user να κάνει εξαγωγή του xml αρχείου από τον controller του φακέλου. Καλεί την μέθοδο studentsxml() μέσα στην php για να παράγει το αρχείο.
+  function exportxml() {
+    window.location = "?page=radevou_doctor&method=exportxml";
+  }
+</script>
