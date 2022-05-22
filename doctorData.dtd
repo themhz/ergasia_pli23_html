@@ -1,0 +1,20 @@
+<!ELEMENT doctorData (doctor,center,apointments)>
+
+<!ELEMENT doctor (fullname, artaftotita, email)>
+
+<!ELEMENT center (address,tk,phone)>
+<!ELEMENT fullname (#PCDATA)>
+<!ELEMENT artaftotita (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT address (#PCDATA)>
+<!ELEMENT tk (#PCDATA)>
+<!ELEMENT phone (#PCDATA)>
+
+<!ELEMENT apointments (apointment)*>
+<!ELEMENT apointment (datetime, fullname, amka, age, status)>
+<!ATTLIST apointment id ID #REQUIRED>
+
+<!ELEMENT datetime (#PCDATA)>
+<!ELEMENT amka (#PCDATA)>
+<!ELEMENT age (#PCDATA)>
+<!ELEMENT status (#PCDATA)>

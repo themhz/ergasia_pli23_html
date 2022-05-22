@@ -26,33 +26,63 @@ class Controller{
 
 
     public function exportxml(){
-       //Το query που θα τρέξω για να επιλέξω την λίστα των ραντεβού.
-        $conn = new mysqli('localhost', 'root', '', 'lambrou');
-        $conn->set_charset("utf8");
-        $data = array();
-        $sql = "select * from appointments a 
-                    inner join vaccination_centers b on a.vaccination_center_id = b.id
-                    inner join doctors c on a.vaccination_center_id = c.vaccination_center_id    
-                    inner join users d on d.id = c.user_id
-                ;";
-
-         $query = $conn->query($sql);
-
-        //Αφού πάρω τα δεδομένα μου τα φέρνω σε έναν πίνακα 
-        while ($row = $query->fetch_assoc()) {
-            $data[] = $row;
-        }
-
-        print_r($data);
 
         //Μετά φτιάχνω το αντικείμενο DOMDocument και την κωδικοποίηση σε UTF-8 για να παίζουν τα Ελληνικά
         $xml = new DOMDocument();
         $xml->encoding = 'UTF-8';
+ 
+        //Έπειτα φτιάχνω ένα DOMImplementation για να περάσω το dtd και να κάνω το validate. Εδώ σε αυτό το σημείο το περνάω στην κορυφή του XML για να το κάνω validate
+        $creator = new DOMImplementation;
+        $doctype = $creator->createDocumentType("doctorData", "", 'doctorData.dtd');
+        $xml->appendChild($doctype);
 
         //Δημιουργώ το root του XML με την εντολή CreateElement 
-        $root = $xml->createElement('apointements');
-        //Και του βάζω ένα Attribue semester = με το επιλεγμένο
-        //$root->setAttribute("semester", $semester);
+        $root = $xml->createElement('doctorData');        
+        $doctor = $root->appendChild($xml->createElement('doctor'));
+        $center = $root->appendChild($xml->createElement('center'));
+        $apointments = $root->appendChild($xml->createElement('apointments'));
+
+        //Δημιουργώ το node των στοιχείων του γιατρού
+        $doctor->appendChild($xml->createElement('fullname',$_SESSION["user"]->lastname." ".$_SESSION["user"]->name));
+        $doctor->appendChild($xml->createElement('artaftotita', $_SESSION["user"]->artaftotitas));
+        $doctor->appendChild($xml->createElement('email', $_SESSION["user"]->email));
+
+        //Παίρνω το κέντρο του γιατρού μέσα από τον πίνακα του γιατρού
+        $db =  new Doctor();
+        $doctorData = $db->select(["user_id="=>$_SESSION["user"]->id])[0];
+        $db =  new Vaccination_center();
+        $centerData = $db->select(["id="=>$doctorData->vaccination_center_id])[0];
+
+        //Δημιουργώ το address,tk και phone node του κέντρου        
+        $center->appendChild($xml->createElement('address', $centerData->address));
+        $center->appendChild($xml->createElement('tk', $centerData->taxidromikos_kodikas));
+        $center->appendChild($xml->createElement('phone', $centerData->phone));
+
+        //Παίρνω και όλα τα ραντεβού που αφορούν το συγκεκριμένο κέντρο
+        $db =  new Appointment();
+        $appointmentData = $db->select(["vaccination_center_id ="=>$centerData->id]);
+                        
+
+        foreach($appointmentData as $adata){
+            $apointment = $xml->createElement('apointment');
+            $apointment->setAttribute("id", "x" . $adata->id);
+            $apointment->appendChild($xml->createElement('datetime',$adata->apointment_date." ".$adata->apointment_time));
+            $db =  new User();
+            $patientData = $db->select(["id="=>$adata->user_id])[0];
+            $apointment->appendChild($xml->createElement('fullname',$patientData->lastname." ".$patientData->name));
+            $apointment->appendChild($xml->createElement('amka',$patientData->amka));
+            $apointment->appendChild($xml->createElement('age',$patientData->afm));
+            $apointment->appendChild($xml->createElement('status',$adata->status));
+
+            $apointments->appendChild($apointment);            
+
+        }
+
+        $root->appendChild($apointments); 
+        // echo $centerData->id;
+        // print_r("<pre>");
+        // print_r($appointmentData);
+        // echo("<pre>");
 
         // //Έπειτα φτιάχνω ένα DOMImplementation για να περάσω το dtd και να κάνω το validate. Εδώ σε αυτό το σημείο το περνάω στην κορυφή του XML για να το κάνω validate
         // $creator = new DOMImplementation;
@@ -75,7 +105,7 @@ class Controller{
         // }
 
         // //Ξεκινάμε να φτιάχνουμε το xml με το CreateElement
-        // $userElement = $root->appendChild($xml->createElement('student'));
+         
         // $userElement->setAttribute("id", "x" . $user["id"]);
 
         // //Δημιουργούμε και κάνουμε append τα δεδομένα στο userElement που είναι το student
@@ -93,16 +123,16 @@ class Controller{
         // }
 
         // //Τοποθετούμε το το userElement στο root. Ο λόγος που ονομάστηκε user και όχι Student είναι επειδή ο student είναι user.
-        // $xml->appendChild($root);
+         $xml->appendChild($root);
 
 
         // //Ορίζουμε το property αυτό για να είναι beutified το xml
-        // $xml->formatOutput = true;
+         $xml->formatOutput = true;
 
         // //Και τέλος σώζουμε το αρχείο στο students.xml
-        // $xml->save('pages/studentsreport/students.xml');
+         $xml->save('doctorData.xml');
 
         // //Σε αυτο το σημείο λέμε στο lbxml να μην εμφανίζει τα warning και τα error ακατάστατα πάνω στην σελίδα, για να ελέγξουμε το μήνυμα
-        // libxml_use_internal_errors(TRUE);
+         libxml_use_internal_errors(TRUE);
     }
 }

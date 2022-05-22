@@ -10,10 +10,26 @@
         <phone></phone>
     </center>
     <apointments>
-        <datetime></datetime>
-        <fullname></fullname>
-        <amka></amka>
-        <age></age>
-        <status></status>
+        <apointment id="">            
+            <datetime></datetime>
+            <fullname></fullname>
+            <amka></amka>
+            <age></age>
+            <status></status>        
+        </apointment>
+        <apointment id="">            
+            <datetime></datetime>
+            <fullname></fullname>
+            <amka></amka>
+            <age></age>
+            <status></status>        
+        </apointment>
+        <apointment id="">            
+            <datetime></datetime>
+            <fullname></fullname>
+            <amka></amka>
+            <age></age>
+            <status></status>        
+        </apointment>
     </apointments>
 </doctorData>

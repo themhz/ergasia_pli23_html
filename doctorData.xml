@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE doctorData SYSTEM "doctorData.dtd">
+<doctorData>
+  <doctor>
+    <fullname>Θεοτοκάτος Θέμης</fullname>
+    <artaftotita>AT064857</artaftotita>
+    <email>temis@google.com</email>
+  </doctor>
+  <center>
+    <address>Περίπτερο 13, Θεσσαλονίκη</address>
+    <tk>54621</tk>
+    <phone>2122222344</phone>
+  </center>
+  <apointments>
+    <apointment id="x7">
+      <datetime> </datetime>
+      <fullname>Φασουλας Αναστάσιος</fullname>
+      <amka>17107901071</amka>
+      <age>uy57</age>
+      <status>0</status>
+    </apointment>
+    <apointment id="x8">
+      <datetime> </datetime>
+      <fullname>Τασόπουλος Τάσσος</fullname>
+      <amka>11079999008</amka>
+      <age>113595666</age>
+      <status>0</status>
+    </apointment>
+    <apointment id="x9">
+      <datetime> </datetime>
+      <fullname>Καραδίμας Στεργιος</fullname>
+      <amka>17107901072</amka>
+      <age>uy58</age>
+      <status>0</status>
+    </apointment>
+    <apointment id="x10">
+      <datetime> </datetime>
+      <fullname>Καποιόπουλος Καποιος</fullname>
+      <amka>17107901075</amka>
+      <age>171079010</age>
+      <status>0</status>
+    </apointment>
+    <apointment id="x11">
+      <datetime> </datetime>
+      <fullname>Ενόποακις Γιάννης</fullname>
+      <amka>user</amka>
+      <age>pass</age>
+      <status>0</status>
+    </apointment>
+    <apointment id="x12">
+      <datetime> </datetime>
+      <fullname>Γεωργόπάκης Φάνης</fullname>
+      <amka>19885754253</amka>
+      <age>558896696</age>
+      <status>0</status>
+    </apointment>
+  </apointments>
+</doctorData>
