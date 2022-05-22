@@ -1,30 +1,30 @@
 <doctorData>
     <doctor>
-        <fullname></fullname>
-        <artaftotita></artaftotita>
-        <email></email>
+        <fullname>fullname</fullname>
+        <artaftotita>artaftotita</artaftotita>
+        <email>email</email>
     </doctor>
     <center>
-        <address></address>
-        <tk></tk>
-        <phone></phone>
+        <address>address</address>
+        <tk>tk</tk>
+        <phone>phone</phone>
     </center>
     <apointments>
-        <apointment id="">            
+        <apointment id="x1">            
             <datetime></datetime>
             <fullname></fullname>
             <amka></amka>
             <age></age>
             <status></status>        
         </apointment>
-        <apointment id="">            
+        <apointment id="x2">            
             <datetime></datetime>
             <fullname></fullname>
             <amka></amka>
             <age></age>
             <status></status>        
         </apointment>
-        <apointment id="">            
+        <apointment id="x3">            
             <datetime></datetime>
             <fullname></fullname>
             <amka></amka>

@@ -284,3 +284,11 @@ body {
 .table tr td, th{
     padding:10px;
 }
+
+.error{
+    background-color: black;
+    color:red;
+    border:1px solid black;
+    padding:50px;
+
+}

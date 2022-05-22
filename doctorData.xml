@@ -3,7 +3,7 @@
 <?xml-stylesheet type="text/xsl" href="doctorData.xsl"?>
 <doctorData>
   <doctor>
-    <fullname>Θεοτοκάτος Θέμης</fullname>
+    <fullname>Λάμπρου Μαρία</fullname>
     <artaftotita>AT064857</artaftotita>
     <email>temis@google.com</email>
   </doctor>
@@ -17,42 +17,42 @@
       <datetime>2022-04-01 08:00</datetime>
       <fullname>Φασουλας Αναστάσιος</fullname>
       <amka>17107901071</amka>
-      <age>uy57</age>
+      <age>45</age>
       <status>0</status>
     </apointment>
     <apointment id="x8">
       <datetime>2022-04-01 09:00</datetime>
       <fullname>Τασόπουλος Τάσσος</fullname>
       <amka>11079999008</amka>
-      <age>113595666</age>
+      <age>60</age>
       <status>1</status>
     </apointment>
     <apointment id="x9">
       <datetime>2022-04-01 10:00</datetime>
       <fullname>Καραδίμας Στεργιος</fullname>
       <amka>17107901072</amka>
-      <age>uy58</age>
+      <age>45</age>
       <status>1</status>
     </apointment>
     <apointment id="x10">
       <datetime>2022-04-02 08:00</datetime>
       <fullname>Καποιόπουλος Καποιος</fullname>
       <amka>17107901075</amka>
-      <age>171079010</age>
+      <age>40</age>
       <status>0</status>
     </apointment>
     <apointment id="x11">
       <datetime>2022-04-02 09:00</datetime>
       <fullname>Ενόποακις Γιάννης</fullname>
-      <amka>user</amka>
-      <age>pass</age>
+      <amka>98765432111</amka>
+      <age>45</age>
       <status>0</status>
     </apointment>
     <apointment id="x12">
       <datetime>2022-04-02 10:00</datetime>
       <fullname>Γεωργόπάκης Φάνης</fullname>
       <amka>19885754253</amka>
-      <age>558896696</age>
+      <age>65</age>
       <status>0</status>
     </apointment>
   </apointments>

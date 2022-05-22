@@ -58,10 +58,9 @@
                 <?php  if($_SESSION["user"]->role == "1")  {?>
                     <li id="radevou"><a href="?page=radevou&method=radevou">Ραντεβού</a></li>
                 <?php } else {?>             
-                    <li id="radevou"><a href="?page=radevou_doctor&method=radevou_doctor">Ραντεβού</a></li>
+                    <li id="radevou_doctor"><a href="?page=radevou_doctor&method=radevou_doctor">Ραντεβού</a></li>
                 <?php } ?>
-                
-                <li id="profile"><a href="?page=profile&method=profile">Προφίλ</a></li>   
+                                
             </ul>
         </div>
         <div class="right">

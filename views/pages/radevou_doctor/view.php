@@ -31,13 +31,11 @@
     <th>ώρα ραντεβού</th>
 </tr>
 <?php 
-
-
-
-
-    //Πήγα να φτιάξω ένα μίνι orm αλλά δεν δουλεύει με το or σωστά έτσι όπως το έχω φτιάξει.. οπότε έβαλα να μπορώ να κάνω custom select
-    //$apointments = $apointments->select( [], ["appointment_date"=> "asc", "user_id is"=>"null",]);
-    $apointments = $apointments->customselect("select * from appointments where user_id is null or  user_id = 0 order by appointment_date asc");
+        
+    $apointments = $apointments->customselect("select * from appointments a
+	inner join vaccination_centers b on a.vaccination_center_id = b.id
+    inner join doctors c on c.vaccination_center_id = b.id 
+    where c.user_id =  ".$_SESSION["user"]->id."  order by appointment_date asc");
     foreach ($apointments as $apointment){ ?>
     <tr>
         <!-- Εμφανίζω τα πεδία μου -->
