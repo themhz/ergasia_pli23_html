@@ -11,15 +11,26 @@
         </style>
     </head>
 <body>                
+    <!-- Συνολικός αριθμός των προγραμματισμένων ραντεβού -->
     <table style="width:800px;" >  
         <tr>
             <td align="center">
                 <table border="1" style="width:100%;">
-                    <tr><th colspan="2">Συνολικός αριθμός των προγραμματισμένων ραντεβού <span style="color:blue;"><xsl:value-of select="count(//apointment)"/></span></th></tr>
+                    <tr><th colspan="2">Συνολικός αριθμός των προγραμματισμένων ραντεβού: <span style="color:blue;"><xsl:value-of select="count(//apointment)"/></span></th></tr>
                 </table>
                 <br/>
             </td>
         </tr>
+        <!-- Ποσοστό ολοκληρωμένων εμβολιασμών -->
+        <tr>
+            <td align="center">
+                <table border="1" style="width:100%;">
+                    <tr><th colspan="2">Ποσοστό ολοκληρωμένων εμβολιασμών: <span style="color:blue;"><xsl:value-of select="round(sum(//status) div count(//status) * 100) div 100 * 100"/>%</span></th></tr>
+                </table>
+                <br/>
+            </td>
+        </tr>        
+        <!-- Πίνακας με τα ραντεβού -->
         <tr>
             <td align="center">
                 <table border="1" style="width:100%;">                    

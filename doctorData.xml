@@ -39,7 +39,7 @@
       <fullname>Καποιόπουλος Καποιος</fullname>
       <amka>17107901075</amka>
       <age>171079010</age>
-      <status>1</status>
+      <status>0</status>
     </apointment>
     <apointment id="x11">
       <datetime>2022-04-02 09:00</datetime>
