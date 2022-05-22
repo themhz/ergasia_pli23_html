@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE doctorData SYSTEM "doctorData.dtd">
+<?xml-stylesheet type="text/xsl" href="doctorData.xsl"?>
 <doctorData>
   <doctor>
     <fullname>Θεοτοκάτος Θέμης</fullname>
@@ -13,42 +14,42 @@
   </center>
   <apointments>
     <apointment id="x7">
-      <datetime> </datetime>
+      <datetime>2022-04-01 08:00</datetime>
       <fullname>Φασουλας Αναστάσιος</fullname>
       <amka>17107901071</amka>
       <age>uy57</age>
       <status>0</status>
     </apointment>
     <apointment id="x8">
-      <datetime> </datetime>
+      <datetime>2022-04-01 09:00</datetime>
       <fullname>Τασόπουλος Τάσσος</fullname>
       <amka>11079999008</amka>
       <age>113595666</age>
-      <status>0</status>
+      <status>1</status>
     </apointment>
     <apointment id="x9">
-      <datetime> </datetime>
+      <datetime>2022-04-01 10:00</datetime>
       <fullname>Καραδίμας Στεργιος</fullname>
       <amka>17107901072</amka>
       <age>uy58</age>
-      <status>0</status>
+      <status>1</status>
     </apointment>
     <apointment id="x10">
-      <datetime> </datetime>
+      <datetime>2022-04-02 08:00</datetime>
       <fullname>Καποιόπουλος Καποιος</fullname>
       <amka>17107901075</amka>
       <age>171079010</age>
-      <status>0</status>
+      <status>1</status>
     </apointment>
     <apointment id="x11">
-      <datetime> </datetime>
+      <datetime>2022-04-02 09:00</datetime>
       <fullname>Ενόποακις Γιάννης</fullname>
       <amka>user</amka>
       <age>pass</age>
       <status>0</status>
     </apointment>
     <apointment id="x12">
-      <datetime> </datetime>
+      <datetime>2022-04-02 10:00</datetime>
       <fullname>Γεωργόπάκης Φάνης</fullname>
       <amka>19885754253</amka>
       <age>558896696</age>

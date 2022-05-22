@@ -36,6 +36,9 @@ class Controller{
         $doctype = $creator->createDocumentType("doctorData", "", 'doctorData.dtd');
         $xml->appendChild($doctype);
 
+        $xslt = $xml->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="doctorData.xsl"');
+        $xml->appendChild($xslt);
+
         //Δημιουργώ το root του XML με την εντολή CreateElement 
         $root = $xml->createElement('doctorData');        
         $doctor = $root->appendChild($xml->createElement('doctor'));
@@ -66,7 +69,7 @@ class Controller{
         foreach($appointmentData as $adata){
             $apointment = $xml->createElement('apointment');
             $apointment->setAttribute("id", "x" . $adata->id);
-            $apointment->appendChild($xml->createElement('datetime',$adata->apointment_date." ".$adata->apointment_time));
+            $apointment->appendChild($xml->createElement('datetime',$adata->appointment_date." ".$adata->appointment_time));
             $db =  new User();
             $patientData = $db->select(["id="=>$adata->user_id])[0];
             $apointment->appendChild($xml->createElement('fullname',$patientData->lastname." ".$patientData->name));
